@@ -18,6 +18,17 @@ class LoginController {
       }
     }
   };
+
+  public validateLogin = async (req: Request, res: Response) => {
+    try {
+      const { role } = res.locals.data;
+      return res.status(200).json(role);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(401).json({ message: error.message });
+      }
+    }
+  };
 }
 
 export default LoginController;

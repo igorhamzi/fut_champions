@@ -12,7 +12,7 @@ class LoginService {
     if (!passwordHash) {
       throw new Error('Incorrect email or password');
     }
-    const generateToken = createToken(email);
+    const generateToken = createToken(email, verifyEmail.role);
     return { token: generateToken };
   };
 }

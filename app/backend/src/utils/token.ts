@@ -1,8 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 
-const createToken = (email: string) => {
+const createToken = (email: string, role: string) => {
   const token = jwt.sign(
-    { email },
+    { email, role },
     process.env.JWT_SECRET as string,
     {
       expiresIn: '1d',
