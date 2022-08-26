@@ -40,7 +40,7 @@ describe('Login', () => {
       .post('/login')
       .send(userMock)
 
-      expect(response.body).to.equal(createToken)
+      expect(response.body).to.have.property('token')
     })
   })
 })
