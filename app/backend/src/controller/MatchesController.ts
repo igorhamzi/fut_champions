@@ -7,9 +7,14 @@ class MatchesController {
     this.matchesService = new MatchesService();
   }
 
-  public GetAllMatches = async (_req: Request, res: Response) => {
+  public getAllMatches = async (_req: Request, res: Response) => {
     const matches = await this.matchesService.getAllMatches();
     return res.status(200).json(matches);
+  };
+
+  public createMatch = async (req: Request, res: Response) => {
+    const newMatche = await this.matchesService.createMatch(req.body);
+    return res.status(201).json(newMatche);
   };
 }
 

@@ -1,17 +1,18 @@
 import MatchesModel from '../database/models/match';
-import Team from '../database/models/team';
+import TeamModel from '../database/models/team';
+import { IMatches } from '../interfaces/IMatches';
 
 class MatchesService {
   public getAllMatches = async () => {
     const matches = await MatchesModel.findAll({
       include: [{
-        model: Team,
+        model: TeamModel,
         as: 'teamHome',
         attributes: {
           exclude: ['id'],
         } },
       {
-        model: Team,
+        model: TeamModel,
         as: 'teamAway',
         attributes: {
           exclude: ['id'],
@@ -20,6 +21,11 @@ class MatchesService {
       ],
     });
     return matches;
+  };
+
+  public createMatch = async (data: IMatches) => {
+    const newMatche = await MatchesModel.create({ ...data, inProgress: true });
+    return newMatche;
   };
 }
 
