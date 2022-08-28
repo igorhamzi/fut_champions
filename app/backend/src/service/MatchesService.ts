@@ -27,6 +27,13 @@ class MatchesService {
     const newMatche = await MatchesModel.create({ ...data, inProgress: true });
     return newMatche;
   };
+
+  public updateInProgress = async (id: number) => {
+    await MatchesModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+  };
 }
 
 export default MatchesService;
