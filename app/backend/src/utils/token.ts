@@ -5,7 +5,7 @@ const createToken = (email: string, role: string) => {
     { email, role },
     process.env.JWT_SECRET as string,
     {
-      expiresIn: '1d',
+      expiresIn: '7d',
       algorithm: 'HS256',
     },
   );
