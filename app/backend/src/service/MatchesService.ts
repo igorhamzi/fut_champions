@@ -52,6 +52,13 @@ class MatchesService {
       { where: { id } },
     );
   };
+
+  public updateMatchGoals = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
+    await MatchesModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    ) as unknown as IMatches;
+  };
 }
 
 export default MatchesService;
