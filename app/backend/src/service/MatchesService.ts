@@ -28,7 +28,7 @@ class MatchesService {
     const awayTeam = await TeamModel.findOne({ where: { id: match.awayTeam } });
     const homeTeam = await TeamModel.findOne({ where: { id: match.homeTeam } });
 
-    if (!awayTeam || homeTeam) {
+    if (!awayTeam || !homeTeam) {
       throw new CustomError(
         404,
         'There is no team with such id!',
