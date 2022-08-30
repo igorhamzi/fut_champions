@@ -13,8 +13,14 @@ class MatchesController {
   };
 
   public createMatch = async (req: Request, res: Response) => {
-    const newMatche = await this.matchesService.createMatch(req.body);
-    return res.status(201).json(newMatche);
+    try {
+      const newMatche = await this.matchesService.createMatch(req.body);
+      return res.status(201).json(newMatche);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(401).json({ message: error.message });
+      }
+    }
   };
 
   public updateInProgress = async (req: Request, res: Response) => {
