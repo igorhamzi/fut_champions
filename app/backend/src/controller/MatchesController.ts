@@ -18,7 +18,7 @@ class MatchesController {
       return res.status(201).json(newMatche);
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(401).json({ message: error.message });
+        return res.status(404).json({ message: error.message });
       }
     }
   };
