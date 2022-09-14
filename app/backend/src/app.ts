@@ -1,3 +1,4 @@
+import * as cors from 'cors';
 import * as express from 'express';
 import LoginRoute from './routes/LoginRoute';
 import TeamsRoute from './routes/TeamsRoute';
@@ -23,6 +24,8 @@ class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
+
+    this.app.use(cors());
 
     this.app.use(express.json());
     this.app.use(accessControl);
