@@ -1,10 +1,13 @@
 import { ITeamHome } from '../../interfaces/ITeamHome';
-import CountGoals from './CountGoals';
-import MatchesResults from './MatchesResults';
+import CountGoalsHome from './CountGoalsHome';
+import MatchesHomeResults from './MatchesHomeResults';
 
 const rankingTeamHome = ({ teamName, homeTeam }: ITeamHome) => {
-  const [goalsScored, goalsConceded] = CountGoals(homeTeam);
-  const [wins, draws, losses, totalPoints] = MatchesResults(homeTeam);
+  const [goalsScored, goalsConceded] = CountGoalsHome(homeTeam);
+  const [wins, losses, draws, totalPoints] = MatchesHomeResults(homeTeam);
+
+  const countEfficiency = Number(((totalPoints / (homeTeam.length * 3)) * 100).toFixed(2));
+  const countGoalsBalance = goalsScored - goalsConceded;
 
   return {
     name: teamName,
@@ -15,8 +18,8 @@ const rankingTeamHome = ({ teamName, homeTeam }: ITeamHome) => {
     totalLosses: losses,
     goalsFavor: goalsScored,
     goalsOwn: goalsConceded,
-    goalsBalance: (goalsScored - goalsConceded),
-    efficiency: Number(((totalPoints / (homeTeam.length * 3)) * 100).toFixed(2)),
+    goalsBalance: countGoalsBalance,
+    efficiency: countEfficiency,
   };
 };
 

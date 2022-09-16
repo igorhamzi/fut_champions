@@ -1,9 +1,7 @@
 import { IMatches } from '../../interfaces/IMatches';
 
-const MatchesResults = (match: IMatches[]): number[] => {
-  let wins = 0;
-  let draws = 0;
-  let losses = 0;
+const MatchesHomeResults = (match: IMatches[]): number[] => {
+  let wins = 0; let draws = 0; let losses = 0;
 
   match.forEach(({ homeTeamGoals, awayTeamGoals }) => {
     if (homeTeamGoals > awayTeamGoals) {
@@ -15,9 +13,9 @@ const MatchesResults = (match: IMatches[]): number[] => {
     }
   });
 
-  const totalPoints = 3 * wins + draws;
+  const totalHomePoints = (3 * wins) + draws;
 
-  return [wins, draws, losses, totalPoints];
+  return [wins, losses, draws, totalHomePoints];
 };
 
-export default MatchesResults;
+export default MatchesHomeResults;
