@@ -28,7 +28,7 @@ Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
 Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 Team.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeTeam' });
-Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'teamAway' });
+Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayTeam' });
 
 // Matches.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
 // Matches.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });

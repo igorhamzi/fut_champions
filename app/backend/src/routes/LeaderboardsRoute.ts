@@ -5,5 +5,6 @@ const router = Router();
 const leaderboardsController = new LeaderboardsController();
 
 router.get('/home', leaderboardsController.getRankingTeamHome);
+router.get('/away', leaderboardsController.getRankingTeamAway);
 
 export default router;

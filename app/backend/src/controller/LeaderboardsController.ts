@@ -12,11 +12,10 @@ class LeaderboardsController {
     res.status(200).json(leaderboardHome);
   };
 
-  // export default class LeaderBoardControllers {
-  //   static async GetLeaderBoard(_req: Request, res: Response) {
-  //     const teams = await LeaderBoardService.getLeaderBoard();
-  //     res.status(200).json(teams);
-  //   }
+  public getRankingTeamAway = async (_req: Request, res: Response) => {
+    const leaderboardAway = await this.leaderboardsService.getRankingTeamAway();
+    res.status(200).json(leaderboardAway);
+  };
 }
 
 export default LeaderboardsController;
