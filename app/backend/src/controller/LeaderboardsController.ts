@@ -8,9 +8,15 @@ class LeaderboardsController {
   }
 
   public getRankingTeamHome = async (_req: Request, res: Response) => {
-    const leaderboard = await this.leaderboardsService.getRankingTeamHome();
-    res.status(200).json(leaderboard);
+    const leaderboardHome = await this.leaderboardsService.getRankingTeamHome();
+    res.status(200).json(leaderboardHome);
   };
+
+  // export default class LeaderBoardControllers {
+  //   static async GetLeaderBoard(_req: Request, res: Response) {
+  //     const teams = await LeaderBoardService.getLeaderBoard();
+  //     res.status(200).json(teams);
+  //   }
 }
 
 export default LeaderboardsController;
