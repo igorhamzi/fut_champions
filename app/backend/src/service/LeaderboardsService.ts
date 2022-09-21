@@ -5,30 +5,54 @@ import RankingTeamHome from '../helpers/TeamHomeLeaderboard/RankingTeamHome';
 import Ranking from '../utils/leaderboardRanking';
 import { ITeamAway } from '../interfaces/ITeamAway';
 import rankingTeamAway from '../helpers/TeamAwayLeaderboard/RankingTeamAway';
+import { ILeaderboard } from '../interfaces/ILeaderboard';
+import Leaderboard from '../helpers/Leaderboard/Leaderboard';
 
 class LeaderboardsService {
-  public getRankingTeamHome = async () => {
-    const matchesFineshed = await TeamModel.findAll({
-      include: [{ model: MatchesModel, as: 'homeTeam', where: { inProgress: false } }],
-    }) as unknown as ITeamHome[];
+  public getLeaderboard = async (): Promise<ILeaderboard[]> => {
+    const matchesFineshedGeneral = await TeamModel.findAll({
+      include: [
+        { model: MatchesModel,
+          as: 'homeTeam',
+          where:
+          { inProgress: false } },
 
-    const ranking = matchesFineshed.map(RankingTeamHome);
+        { model: MatchesModel,
+          as: 'awayTeam',
+          where:
+          { inProgress: false } },
+      ],
+    });
 
-    const leaderboardHome = ranking.sort(Ranking);
+    const LeaderboardAll = matchesFineshedGeneral.map(Leaderboard).sort(Ranking);
 
-    return leaderboardHome;
+    return LeaderboardAll;
   };
 
-  public getRankingTeamAway = async () => {
+  public getLeaderboardTeamAway = async () => {
     const matchesFineshed = await TeamModel.findAll({
-      include: [{ model: MatchesModel, as: 'awayTeam', where: { inProgress: false } }],
+      include: [{
+        model: MatchesModel,
+        as: 'awayTeam',
+        where: { inProgress: false } }],
     }) as unknown as ITeamAway[];
 
-    const ranking = matchesFineshed.map(rankingTeamAway);
+    const leaderboardTeamAway = matchesFineshed.map(rankingTeamAway).sort(Ranking);
 
-    const leaderboardAway = ranking.sort(Ranking);
+    return leaderboardTeamAway;
+  };
 
-    return leaderboardAway;
+  public getLeaderboardTeamHome = async () => {
+    const matchesFineshed = await TeamModel.findAll({
+      include: [
+        { model: MatchesModel,
+          as: 'homeTeam',
+          where: { inProgress: false } }],
+    }) as unknown as ITeamHome[];
+
+    const leaderboardTeamHome = matchesFineshed.map(RankingTeamHome).sort(Ranking);
+
+    return leaderboardTeamHome;
   };
 }
 

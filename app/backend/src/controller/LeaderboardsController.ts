@@ -7,14 +7,19 @@ class LeaderboardsController {
     this.leaderboardsService = new LeaderboardsService();
   }
 
-  public getRankingTeamHome = async (_req: Request, res: Response) => {
-    const leaderboardHome = await this.leaderboardsService.getRankingTeamHome();
-    res.status(200).json(leaderboardHome);
+  public getLeaderboard = async (_req: Request, res: Response) => {
+    const leaderboard = await this.leaderboardsService.getLeaderboard();
+    res.status(200).json(leaderboard);
   };
 
-  public getRankingTeamAway = async (_req: Request, res: Response) => {
-    const leaderboardAway = await this.leaderboardsService.getRankingTeamAway();
+  public getLeaderboardTeamAway = async (_req: Request, res: Response) => {
+    const leaderboardAway = await this.leaderboardsService.getLeaderboardTeamAway();
     res.status(200).json(leaderboardAway);
+  };
+
+  public getLeaderboardTeamHome = async (_req: Request, res: Response) => {
+    const leaderboardHome = await this.leaderboardsService.getLeaderboardTeamHome();
+    res.status(200).json(leaderboardHome);
   };
 }
 
